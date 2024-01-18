@@ -178,4 +178,8 @@ function App(factory, deps) {
 
 export default App;
 
+// 이번에는 컴포넌트 바깥으로 분리해버리는 기능에 대해서 알아보록 하겠다. useReducer 를 이용을 할 것이다.
+// useReducer 은 코드를 가볍게 만들어 준다는 기능을 가지고 있다.
+
+
 

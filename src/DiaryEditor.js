@@ -1,6 +1,9 @@
-import React,  {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
-const DiaryEditor = ({onCreate}) => {
+const DiaryEditor = ({onCreate}) => {   // 결론적으로 onCreate 함수가 재생성되지 않으면 이 DiaryEditor 리랜더가 되지 않는다.
+                                    // 그래서 이번에는 useCallback 을 활용하여 최적화를 진행을 할 것이다.
+                                    // useCallback 은 두번째로 받은 인자 배열의 내에 값이 변하지 않으면 처음 반환 했던 콜백함수를 계속 재사용을 할 수 있도록 도와주는 그런 리엑트 훅이다.
+
     const [state, setState] = useState({
         author:"",
         content:"",
@@ -76,7 +79,7 @@ const DiaryEditor = ({onCreate}) => {
         </div>
     </div>;
 }
-export default DiaryEditor;
+export default React.memo(DiaryEditor);  // React.memo 를 쉽게 사용하는법 묶어서 반출하겠다 !!
 
 //{/"props 를 사용 author 상태를 변화를 시킨다 사용자가 입력에 따라"/}
 // input 이 수정이 될려면 author 의 값이 바꿔줘야만 실시간으로 반영이 된다. 이 때 onChange 를 사용을 해야 한다.

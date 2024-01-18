@@ -1,6 +1,10 @@
-import {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 
 const DiaryItem = ({onEdit,onRemove,author,content,emotion,created_date,id})=>{
+
+    useEffect(() => {
+        console.log(`${id}번 째 아이템 랜더`);
+    }, []);
     // 배열의 Item 을 받고 그리고 기능을 구현을 한다.
     //  {/*prop 은 직접 하나하나 받아 와야 한다. */}
     const localContentInput = useRef();  // 래퍼런스 객체 생성하는 코드
@@ -54,7 +58,9 @@ const DiaryItem = ({onEdit,onRemove,author,content,emotion,created_date,id})=>{
         </div>
     );
 }
-export default DiaryItem;
+export default React.memo(DiaryItem);
+
+// 최적화의 시작은 React.memo 로 시작을 하는 것이다.
 
 
 // new Date(created_date).toLocaleString() <-- 이렇게 작성을 하면 Date 객체는 현재 시간을 기준으로 () 소괄호 안에
